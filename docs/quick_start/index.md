@@ -4,7 +4,7 @@
 Create a crud class with get, list, create, update, delete and do methods:
 
 ```python
-from py_ocpi.core.enums import ModuleID, RoleEnum
+from ocpi.core.enums import ModuleID, RoleEnum
 
 
 class Crud:
@@ -37,8 +37,8 @@ class Crud:
 Create a adapter class with an adapter method for each OCPI module. this example will only include the adapter for locations module.
 
 ```python
-from py_ocpi.modules.versions.enums import VersionNumber
-from py_ocpi.modules.locations.v_2_2_1.schemas import Location
+from ocpi.modules.versions.enums import VersionNumber
+from ocpi.modules.locations.v_2_2_1.schemas import Location
 
 
 class Adapter:
@@ -51,7 +51,7 @@ class Adapter:
 Specify the OCPI versions and OCPI roles that are intended for the application and pass the already defined Crud and Adapter.
 
 ```python
-from py_ocpi import get_application
+from ocpi import get_application
 
 app = get_application([VersionNumber.v_2_2_1], [enums.RoleEnum.cpo], Crud, Adapter)
 ```

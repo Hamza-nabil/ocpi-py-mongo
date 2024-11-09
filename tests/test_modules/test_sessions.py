@@ -2,14 +2,14 @@ from uuid import uuid4
 
 from fastapi.testclient import TestClient
 
-from py_ocpi.main import get_application
-from py_ocpi.core import enums
-from py_ocpi.core.config import settings
-from py_ocpi.modules.cdrs.v_2_2_1.schemas import TokenType
-from py_ocpi.modules.cdrs.v_2_2_1.enums import AuthMethod, CdrDimensionType
-from py_ocpi.modules.sessions.v_2_2_1.schemas import Session, ChargingPreferences
-from py_ocpi.modules.sessions.v_2_2_1.enums import SessionStatus, ProfileType
-from py_ocpi.modules.versions.enums import VersionNumber
+from ocpi.main import get_application
+from ocpi.core import enums
+from ocpi.core.config import settings
+from ocpi.modules.cdrs.v_2_2_1.schemas import TokenType
+from ocpi.modules.cdrs.v_2_2_1.enums import AuthMethod, CdrDimensionType
+from ocpi.modules.sessions.v_2_2_1.schemas import Session, ChargingPreferences
+from ocpi.modules.sessions.v_2_2_1.enums import SessionStatus, ProfileType
+from ocpi.modules.versions.enums import VersionNumber
 
 SESSIONS = [
     {

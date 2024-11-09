@@ -2,13 +2,13 @@ from uuid import uuid4
 
 from fastapi.testclient import TestClient
 
-from py_ocpi.main import get_application
-from py_ocpi.core import enums
-from py_ocpi.core.exceptions import NotFoundOCPIError
-from py_ocpi.modules.cdrs.v_2_2_1.enums import AuthMethod
-from py_ocpi.modules.tokens.v_2_2_1.enums import WhitelistType, TokenType, AllowedType
-from py_ocpi.modules.tokens.v_2_2_1.schemas import AuthorizationInfo, Token
-from py_ocpi.modules.versions.enums import VersionNumber
+from ocpi.main import get_application
+from ocpi.core import enums
+from ocpi.core.exceptions import NotFoundOCPIError
+from ocpi.modules.cdrs.v_2_2_1.enums import AuthMethod
+from ocpi.modules.tokens.v_2_2_1.enums import WhitelistType, TokenType, AllowedType
+from ocpi.modules.tokens.v_2_2_1.schemas import AuthorizationInfo, Token
+from ocpi.modules.versions.enums import VersionNumber
 
 TOKENS = [
     {
