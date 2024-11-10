@@ -3,14 +3,28 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 from ocpi.modules.locations.v_2_2_1.schemas import EnergyMix
-from ocpi.modules.tariffs.v_2_2_1.enums import DayOfWeek, ReservationRestrictionType, TariffDimensionType, TariffType
-from ocpi.core.data_types import URL, CiString, DisplayText, Number, Price, String, DateTime
+from ocpi.modules.tariffs.v_2_2_1.enums import (
+    DayOfWeek,
+    ReservationRestrictionType,
+    TariffDimensionType,
+    TariffType,
+)
+from ocpi.core.data_types import (
+    URL,
+    CiString,
+    DisplayText,
+    Number,
+    Price,
+    String,
+    DateTime,
+)
 
 
 class PriceComponent(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc#142-pricecomponent-class
     """
+
     type: TariffDimensionType
     price: Number
     vat: Optional[Number]
@@ -21,6 +35,7 @@ class TariffRestrictions(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc#146-tariffrestrictions-class
     """
+
     start_time: Optional[String(5)]
     end_time: Optional[String(5)]
     start_date: Optional[String(10)]
@@ -41,6 +56,7 @@ class TariffElement(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc#144-tariffelement-class
     """
+
     price_components: List[PriceComponent]
     restrictions: Optional[TariffRestrictions]
 
@@ -49,6 +65,7 @@ class Tariff(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc#131-tariff-object
     """
+
     country_code: CiString(2)
     party_id: CiString(3)
     id: CiString(36)

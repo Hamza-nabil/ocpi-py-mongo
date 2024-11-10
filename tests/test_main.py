@@ -4,12 +4,10 @@ from ocpi.modules.versions.enums import VersionNumber
 
 
 def test_get_application():
-    class Crud:
-        ...
+    class Crud: ...
 
-    class Adapter:
-        ...
+    class Adapter: ...
 
     app = get_application(VersionNumber.v_2_2_1, [enums.RoleEnum.cpo], Crud, Adapter)
 
-    assert app.url_path_for('get_versions') == "/ocpi/versions"
+    assert app.url_path_for("get_versions") == "/ocpi/versions"

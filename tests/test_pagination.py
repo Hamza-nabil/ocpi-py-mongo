@@ -16,8 +16,8 @@ def test_inject_dependency():
     app = get_application([VersionNumber.v_2_2_1], [enums.RoleEnum.cpo], crud, adapter)
 
     client = TestClient(app)
-    response = client.get('/ocpi/cpo/2.2.1/locations')
+    response = client.get("/ocpi/cpo/2.2.1/locations")
 
-    assert response.headers.get('X-Total-Count') == '0'
-    assert response.headers.get('X-Limit') == '50'
-    assert response.headers.get('Link') == ''
+    assert response.headers.get("X-Total-Count") == "0"
+    assert response.headers.get("X-Limit") == "50"
+    assert response.headers.get("Link") == ""

@@ -3,7 +3,9 @@ from ocpi.modules.versions.enums import VersionNumber
 
 class Adapter:
     @classmethod
-    def location_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
+    def location_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI Location schema
 
         Args:
@@ -27,8 +29,9 @@ class Adapter:
         """
 
     @classmethod
-    def charging_preference_adapter(cls, data: dict,
-                                    version: VersionNumber = VersionNumber.latest):
+    def charging_preference_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI ChargingPreference schema
 
         Args:
@@ -40,7 +43,9 @@ class Adapter:
         """
 
     @classmethod
-    def credentials_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
+    def credentials_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI Credential schema
 
         Args:
@@ -76,7 +81,9 @@ class Adapter:
         """
 
     @classmethod
-    def command_response_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
+    def command_response_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI CommandResponse schema
 
         Args:
@@ -88,7 +95,9 @@ class Adapter:
         """
 
     @classmethod
-    def command_result_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
+    def command_result_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI CommandResult schema
 
         Args:
@@ -112,7 +121,9 @@ class Adapter:
         """
 
     @classmethod
-    def authorization_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
+    def authorization_adapter(
+        cls, data: dict, version: VersionNumber = VersionNumber.latest
+    ):
         """Adapt the data to OCPI AuthorizationInfo schema
 
         Args:

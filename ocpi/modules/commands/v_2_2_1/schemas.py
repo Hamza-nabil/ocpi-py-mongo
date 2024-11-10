@@ -10,6 +10,7 @@ class CancelReservation(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#131-cancelreservation-object
     """
+
     response_url: URL
     reservation_id: CiString(36)
 
@@ -18,6 +19,7 @@ class CommandResponse(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#132-commandresponse-object
     """
+
     result: CommandResponseType
     timeout: int
     message: List[DisplayText] = []
@@ -27,6 +29,7 @@ class CommandResult(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#133-commandresult-object
     """
+
     result: CommandResultType
     message: List[DisplayText] = []
 
@@ -35,6 +38,7 @@ class ReserveNow(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#134-reservenow-object
     """
+
     response_url: URL
     token: Token
     expiry_date: DateTime
@@ -48,6 +52,7 @@ class StartSession(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#135-startsession-object
     """
+
     response_url: URL
     token: Token
     location_id: CiString(36)
@@ -60,6 +65,7 @@ class StopSession(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#136-stopsession-object
     """
+
     response_url: URL
     session_id: CiString(36)
 
@@ -68,6 +74,7 @@ class UnlockConnector(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc#137-unlockconnector-object
     """
+
     response_url: URL
     location_id: CiString(36)
     evse_uid: CiString(36)

@@ -22,7 +22,9 @@ def get_versions():
     return [
         Version(
             version=VersionNumber.v_2_2_1,
-            url=URL(f'https://{settings.OCPI_HOST}/{settings.OCPI_PREFIX}/{VersionNumber.v_2_2_1.value}/details')
+            url=URL(
+                f"https://{settings.OCPI_HOST}/{settings.OCPI_PREFIX}/{VersionNumber.v_2_2_1.value}/details"
+            ),
         ).dict(),
     ]
 
@@ -38,8 +40,8 @@ def pagination_filters(
     limit: int = Query(default=50),
 ):
     return {
-        'date_from': date_from,
-        'date_to': date_to,
-        'offset': offset,
-        'limit': limit,
+        "date_from": date_from,
+        "date_to": date_to,
+        "offset": offset,
+        "limit": limit,
     }

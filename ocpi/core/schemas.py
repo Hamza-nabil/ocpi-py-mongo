@@ -11,6 +11,7 @@ class OCPIResponse(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/transport_and_format.asciidoc#117-response-format
     """
+
     data: Union[list, dict]
     status_code: int
     status_message: String(255)

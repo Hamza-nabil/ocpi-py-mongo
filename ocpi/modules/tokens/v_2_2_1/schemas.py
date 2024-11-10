@@ -10,6 +10,7 @@ class EnergyContract(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc#142-energycontract-class
     """
+
     supplier_name: String(64)
     contract_id: Optional[String(64)]
 
@@ -18,6 +19,7 @@ class LocationReference(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc#143-locationreferences-class
     """
+
     location_id: CiString(36)
     evse_uids: List[CiString(36)] = []
 
@@ -26,6 +28,7 @@ class Token(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc#132-token-object
     """
+
     country_code: CiString(2)
     party_id: CiString(3)
     uid: CiString(36)
@@ -63,6 +66,7 @@ class AuthorizationInfo(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc#131-authorizationinfo-object
     """
+
     allowed: AllowedType
     token: Token
     location: Optional[LocationReference]

@@ -17,15 +17,16 @@ from ocpi.core.config import settings
 from ocpi.core.data_types import URL
 from ocpi.core.schemas import OCPIResponse
 from ocpi.core.exceptions import AuthorizationOCPIError, NotFoundOCPIError
-from ocpi.core.push import http_router as http_push_router, websocket_router as websocket_push_router
+from ocpi.core.push import (
+    http_router as http_push_router,
+    websocket_router as websocket_push_router,
+)
 from ocpi.routers import v_2_2_1_cpo_router, v_2_2_1_emsp_router
 
 
 class ExceptionHandlerMiddleware(BaseHTTPMiddleware):
 
-    async def dispatch(
-        self, request: Request, call_next: RequestResponseEndpoint
-    ):
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
         try:
             response = await call_next(request)
         except AuthorizationOCPIError as e:
@@ -52,8 +53,8 @@ def get_application(
 ) -> FastAPI:
     _app = FastAPI(
         title=settings.PROJECT_NAME,
-        docs_url=f'/{settings.OCPI_PREFIX}/docs',
-        openapi_url=f"/{settings.OCPI_PREFIX}/openapi.json"
+        docs_url=f"/{settings.OCPI_PREFIX}/docs",
+        openapi_url=f"/{settings.OCPI_PREFIX}/openapi.json",
     )
 
     _app.add_middleware(
@@ -67,19 +68,19 @@ def get_application(
 
     _app.include_router(
         versions_router,
-        prefix=f'/{settings.OCPI_PREFIX}',
+        prefix=f"/{settings.OCPI_PREFIX}",
     )
 
     if http_push:
         _app.include_router(
             http_push_router,
-            prefix=f'/{settings.PUSH_PREFIX}',
+            prefix=f"/{settings.PUSH_PREFIX}",
         )
 
     if websocket_push:
         _app.include_router(
             websocket_push_router,
-            prefix=f'/{settings.PUSH_PREFIX}',
+            prefix=f"/{settings.PUSH_PREFIX}",
         )
 
     versions = []
@@ -88,13 +89,15 @@ def get_application(
     if VersionNumber.v_2_2_1 in version_numbers:
         _app.include_router(
             versions_v_2_2_1_router,
-            prefix=f'/{settings.OCPI_PREFIX}',
+            prefix=f"/{settings.OCPI_PREFIX}",
         )
 
         versions.append(
             Version(
                 version=VersionNumber.v_2_2_1,
-                url=URL(f'https://{settings.OCPI_HOST}/{settings.OCPI_PREFIX}/{VersionNumber.v_2_2_1.value}/details')
+                url=URL(
+                    f"https://{settings.OCPI_HOST}/{settings.OCPI_PREFIX}/{VersionNumber.v_2_2_1.value}/details"
+                ),
             ).dict(),
         )
 
@@ -103,18 +106,22 @@ def get_application(
         if RoleEnum.cpo in roles:
             _app.include_router(
                 v_2_2_1_cpo_router,
-                prefix=f'/{settings.OCPI_PREFIX}/cpo/{VersionNumber.v_2_2_1.value}',
-                tags=['CPO']
+                prefix=f"/{settings.OCPI_PREFIX}/cpo/{VersionNumber.v_2_2_1.value}",
+                tags=["CPO"],
             )
-            version_endpoints[VersionNumber.v_2_2_1] += ENDPOINTS[VersionNumber.v_2_2_1][RoleEnum.cpo]
+            version_endpoints[VersionNumber.v_2_2_1] += ENDPOINTS[
+                VersionNumber.v_2_2_1
+            ][RoleEnum.cpo]
 
         if RoleEnum.emsp in roles:
             _app.include_router(
                 v_2_2_1_emsp_router,
-                prefix=f'/{settings.OCPI_PREFIX}/emsp/{VersionNumber.v_2_2_1.value}',
-                tags=['EMSP']
+                prefix=f"/{settings.OCPI_PREFIX}/emsp/{VersionNumber.v_2_2_1.value}",
+                tags=["EMSP"],
             )
-            version_endpoints[VersionNumber.v_2_2_1] += ENDPOINTS[VersionNumber.v_2_2_1][RoleEnum.emsp]
+            version_endpoints[VersionNumber.v_2_2_1] += ENDPOINTS[
+                VersionNumber.v_2_2_1
+            ][RoleEnum.emsp]
 
     def override_get_crud():
         return crud

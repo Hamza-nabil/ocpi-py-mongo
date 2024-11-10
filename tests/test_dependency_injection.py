@@ -16,6 +16,6 @@ def test_inject_dependency():
     app = get_application([VersionNumber.v_2_2_1], [enums.RoleEnum.cpo], crud, adapter)
 
     client = TestClient(app)
-    client.get('/ocpi/cpo/2.2.1/locations')
+    client.get("/ocpi/cpo/2.2.1/locations")
 
     crud.list.assert_awaited_once()

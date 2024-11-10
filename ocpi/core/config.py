@@ -4,13 +4,13 @@ from pydantic import AnyHttpUrl, BaseSettings, validator
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = 'OCPI'
+    PROJECT_NAME: str = "OCPI"
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
-    OCPI_HOST: str = 'www.example.com'
-    OCPI_PREFIX: str = 'ocpi'
-    PUSH_PREFIX: str = 'push'
-    COUNTRY_CODE: str = 'US'
-    PARTY_ID: str = 'NON'
+    OCPI_HOST: str = "www.example.com"
+    OCPI_PREFIX: str = "ocpi"
+    PUSH_PREFIX: str = "push"
+    COUNTRY_CODE: str = "US"
+    PARTY_ID: str = "NON"
 
     @classmethod
     @validator("BACKEND_CORS_ORIGINS", pre=True)

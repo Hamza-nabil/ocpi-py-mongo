@@ -26,7 +26,9 @@ class Crud:
         """
 
     @classmethod
-    async def list(cls, module: ModuleID, role: RoleEnum, filters: dict, *args, **kwargs) -> Tuple[list, int, bool]:
+    async def list(
+        cls, module: ModuleID, role: RoleEnum, filters: dict, *args, **kwargs
+    ) -> Tuple[list, int, bool]:
         """Get the list of objects
 
         Args:
@@ -45,7 +47,9 @@ class Crud:
         """
 
     @classmethod
-    async def create(cls, module: ModuleID, role: RoleEnum, data: dict, *args, **kwargs) -> Any:
+    async def create(
+        cls, module: ModuleID, role: RoleEnum, data: dict, *args, **kwargs
+    ) -> Any:
         """Create an object
 
         Args:
@@ -67,7 +71,9 @@ class Crud:
         """
 
     @classmethod
-    async def update(cls, module: ModuleID, role: RoleEnum, data: dict, id, *args, **kwargs) -> Any:
+    async def update(
+        cls, module: ModuleID, role: RoleEnum, data: dict, id, *args, **kwargs
+    ) -> Any:
         """Update an object
 
         Args:
@@ -104,7 +110,15 @@ class Crud:
         """
 
     @classmethod
-    async def do(cls, module: ModuleID, role: RoleEnum, action: Action, *args, data: dict = None, **kwargs) -> Any:
+    async def do(
+        cls,
+        module: ModuleID,
+        role: RoleEnum,
+        action: Action,
+        *args,
+        data: dict = None,
+        **kwargs
+    ) -> Any:
         """Do an action (non-CRUD)
 
         Args:

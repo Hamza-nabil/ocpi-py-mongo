@@ -11,17 +11,28 @@ from ocpi.modules.versions.enums import VersionNumber
 from ocpi.modules.commands.v_2_2_1.schemas import CommandResult
 
 router = APIRouter(
-    prefix='/commands',
+    prefix="/commands",
 )
 
 
 @router.post("/{uid}", response_model=OCPIResponse)
-async def receive_command_result(request: Request, uid: str, command_result: CommandResult,
-                                 crud: Crud = Depends(get_crud), adapter: Adapter = Depends(get_adapter)):
+async def receive_command_result(
+    request: Request,
+    uid: str,
+    command_result: CommandResult,
+    crud: Crud = Depends(get_crud),
+    adapter: Adapter = Depends(get_adapter),
+):
     auth_token = get_auth_token(request)
 
-    await crud.update(ModuleID.commands, RoleEnum.emsp, command_result.dict(), uid,
-                      auth_token=auth_token, version=VersionNumber.v_2_2_1)
+    await crud.update(
+        ModuleID.commands,
+        RoleEnum.emsp,
+        command_result.dict(),
+        uid,
+        auth_token=auth_token,
+        version=VersionNumber.v_2_2_1,
+    )
 
     return OCPIResponse(
         data=[],

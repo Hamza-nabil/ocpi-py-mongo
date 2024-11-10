@@ -5,17 +5,15 @@ from ocpi.modules.versions.enums import VersionNumber
 from ocpi.modules.versions.schemas import VersionDetail
 
 fake_endpoints_data = {
-    'data': [
+    "data": [
         VersionDetail(
             version=VersionNumber.v_2_2_1,
-            endpoints=ENDPOINTS[VersionNumber.v_2_2_1][RoleEnum.cpo]
+            endpoints=ENDPOINTS[VersionNumber.v_2_2_1][RoleEnum.cpo],
         ).dict(),
     ],
 }
 
-fake_versions_data = {
-    'data': get_versions()
-}
+fake_versions_data = {"data": get_versions()}
 
 
 class MockResponse:
@@ -29,9 +27,10 @@ class MockResponse:
 
 # Connector mocks
 
+
 class MockAsyncClientVersionsAndEndpoints:
     async def get(url, headers):
-        if url == 'versions_url':
+        if url == "versions_url":
             return MockResponse(fake_versions_data, 200)
         else:
             return MockResponse(fake_endpoints_data, 200)

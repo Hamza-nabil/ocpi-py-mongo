@@ -11,6 +11,7 @@ class Session(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc#131-session-object
     """
+
     country_code: CiString(2)
     party_id: CiString(3)
     id: CiString(36)
@@ -35,6 +36,7 @@ class SessionPartialUpdate(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc#131-session-object
     """
+
     country_code: Optional[CiString(2)]
     party_id: Optional[CiString(3)]
     id: Optional[CiString(36)]
@@ -59,6 +61,7 @@ class ChargingPreferences(BaseModel):
     """
     https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc#132-chargingpreferences-object
     """
+
     profile_type: ProfileType
     departure_time: Optional[DateTime]
     energy_need: Optional[Number]
