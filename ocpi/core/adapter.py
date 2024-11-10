@@ -1,5 +1,12 @@
 from ocpi.modules.versions.enums import VersionNumber
 
+from ocpi.modules.cdrs.v_2_2_1.schemas import Cdr
+from ocpi.modules.credentials.v_2_2_1.schemas import Credentials
+from ocpi.modules.locations.v_2_2_1.schemas import Location
+from ocpi.modules.sessions.v_2_2_1.schemas import Session
+from ocpi.modules.tariffs.v_2_2_1.schemas import Tariff
+from ocpi.modules.tokens.v_2_2_1.schemas import Token
+
 
 class Adapter:
     @classmethod
@@ -15,6 +22,7 @@ class Adapter:
         Returns:
             Location: The object data in proper OCPI schema
         """
+        return Location(**data)
 
     @classmethod
     def session_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
@@ -27,6 +35,7 @@ class Adapter:
         Returns:
             Session: The object data in proper OCPI schema
         """
+        return Session(**data)
 
     @classmethod
     def charging_preference_adapter(
@@ -41,6 +50,7 @@ class Adapter:
         Returns:
             ChargingPreference: The object data in proper OCPI schema
         """
+        #return ChargingPreference(**data)
 
     @classmethod
     def credentials_adapter(
@@ -55,6 +65,7 @@ class Adapter:
         Returns:
             Credential: The object data in proper OCPI schema
         """
+        return Credentials(**data)
 
     @classmethod
     def cdr_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
@@ -67,6 +78,7 @@ class Adapter:
         Returns:
             CDR: The object data in proper OCPI schema
         """
+        return Cdr(**data)
 
     @classmethod
     def tariff_adapter(cls, data: dict, version: VersionNumber = VersionNumber.latest):
@@ -79,6 +91,7 @@ class Adapter:
         Returns:
             Tariff: The object data in proper OCPI schema
         """
+        return Tariff(**data)
 
     @classmethod
     def command_response_adapter(
@@ -119,6 +132,7 @@ class Adapter:
         Returns:
             Token: The object data in proper OCPI schema
         """
+        return Token(**data)
 
     @classmethod
     def authorization_adapter(

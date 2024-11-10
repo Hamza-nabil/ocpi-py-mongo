@@ -1,9 +1,13 @@
 from typing import Any, Tuple
 
+from ocpi.core.db import get_db
+from motor.core import AgnosticDatabase
 from ocpi.core.enums import ModuleID, RoleEnum, Action
 
 
 class Crud:
+    _database: AgnosticDatabase = get_db()
+
     @classmethod
     async def get(cls, module: ModuleID, role: RoleEnum, id, *args, **kwargs) -> Any:
         """Get an object
@@ -24,6 +28,9 @@ class Crud:
         Returns:
             Any: The object data
         """
+        collection = cls._database[module.value]
+        document = await collection.find_one({"_id": id})
+        return document
 
     @classmethod
     async def list(
@@ -45,6 +52,19 @@ class Crud:
         Returns:
             Tuple[list, int, bool]: Objects list, Total number of objects, if it's the last page or not(for pagination)
         """
+        collection = cls._database[module.value]
+        cursor = collection.find(filters)
+
+        # Apply pagination if needed
+        limit = kwargs.get("limit", 10)
+        skip = kwargs.get("skip", 0)
+        cursor = cursor.skip(skip).limit(limit)
+
+        documents = await cursor.to_list(length=limit)
+        total_count = await collection.count_documents(filters)
+        is_last_page = (skip + limit) >= total_count
+
+        return documents, total_count, is_last_page
 
     @classmethod
     async def create(
@@ -69,6 +89,10 @@ class Crud:
         Returns:
             Any: The created object data
         """
+        collection = cls._database[module.value]
+        result = await collection.insert_one(data)
+        created_document = await collection.find_one({"_id": result.inserted_id})
+        return created_document
 
     @classmethod
     async def update(
@@ -94,6 +118,10 @@ class Crud:
         Returns:
             Any: The updated object data
         """
+        collection = cls._database[module.value]
+        result = await collection.insert_one(data)
+        created_document = await collection.find_one({"_id": result.inserted_id})
+        return created_document
 
     @classmethod
     async def delete(cls, module: ModuleID, role: RoleEnum, id, *args, **kwargs):
@@ -108,6 +136,9 @@ class Crud:
             auth_token (str): The authentication token used by third party
             version (VersionNumber): The version number of the caller OCPI module
         """
+        collection = cls._database[module.value]
+        result = await collection.delete_one({"_id": id})
+        return result.deleted_count > 0  # Returns True if a document was deleted
 
     @classmethod
     async def do(
@@ -135,3 +166,4 @@ class Crud:
         Returns:
             Any: The action result
         """
+        pass
